@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thiệp Mời Dự Lễ Tốt Nghiệp</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #fceff9, #e0f7fa);
+            margin: 0;
+            padding: 0;
+            color: #444;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .header {
+            background: #ffccf9;
+            color: #6a1b9a;
+            padding: 30px 20px;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid #6a1b9a;
+            width: 0;
+            animation: typing 3s steps(30, end) forwards, blink 0.7s step-end infinite;
+        }
+
+        .header p {
+            margin-top: 15px;
+            font-size: 1.3rem;
+        }
+
+        .content, .rsvp {
+            background: #ffffff;
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            animation: slideUp 1s ease forwards;
+            opacity: 0;
+        }
+
+        .content h2, .rsvp h2 {
+            color: #ec407a;
+            font-size: 1.8rem;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #f48fb1;
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: transform 0.2s;
+            margin: 10px;
+        }
+
+        button:hover {
+            animation: bounce 0.5s;
+            background-color: #f06292;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        /* Keyframes */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0 }
+            to { opacity: 1 }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* Trái tim bay */
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: pink;
+            transform: rotate(45deg);
+            animation: floatUp 3s linear infinite;
+        }
+
+        .heart::before, .heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: pink;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: -10px;
+            top: 0;
+        }
+
+        @keyframes floatUp {
+            0% {
+                bottom: 0;
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+            100% {
+                bottom: 100%;
+                opacity: 0;
+                transform: translateX(-30px) scale(1.5);
+            }
+        }
+
+        /* Thêm style cho input */
+        .input-name {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Thiệp Mời Dự Lễ Tốt Nghiệp</h1>
+            <p>🎓 Tôi trân trọng mời bạn đến tham dự lễ tốt nghiệp! 🎉</p>
+        </header>
+
+        <section class="content">
+            <h2>🎓 Thông Tin Buổi Lễ</h2>
+            <ul>
+                <li><strong>📅 Ngày:</strong> 10 Tháng 8, 2025</li>
+                <li><strong>⏰ Thời gian:</strong> 14:20</li>
+                <li><strong>📍 Địa điểm:</strong> Hội trường tầng 2, toà HA11 - Trường Đại học kinh tế - kỹ thuật công nghiệp Hà Nội</li>
+            </ul>
+        </section>
+
+        <section class="rsvp">
+            <h2>🎈 Bạn Sẽ Tham Dự Chứ?</h2>
+            <p>Vui lòng nhập tên của bạn để xác nhận tham dự:</p>
+            <input type="text" id="guestName" class="input-name" placeholder="Nhập tên của bạn" required>
+            <p>Nhấn vào nút dưới đây để xác nhận tham dự hoặc không tham dự nhé! 😊</p>
+            <button onclick="confirmAttendance()">💌 Xác Nhận Tham Dự</button>
+            <button onclick="declineAttendance()">❌ Không Tham Dự</button>
+        </section>
+
+        <footer class="footer">
+            <p>&copy; 2025 UNETI. Tất cả quyền được bảo lưu.</p>
+        </footer>
+    </div>
+
+    <!-- Trái tim bay -->
+    <script>
+        function confirmAttendance() {
+            const guestName = document.getElementById("guestName").value;
+            if (guestName) {
+                alert(`💖 Cảm ơn bạn, ${guestName}! Hẹn gặp bạn tại buổi lễ nhé!`);
+            } else {
+                alert("💔 Vui lòng nhập tên trước khi xác nhận tham dự.");
+            }
+        }
+
+        function declineAttendance() {
+            const guestName = document.getElementById("guestName").value;
+            if (guestName) {
+                alert(`💔 Cảm ơn bạn, ${guestName}, đã thông báo. Hy vọng sẽ gặp bạn trong các dịp khác!`);
+            } else {
+                alert("💔 Vui lòng nhập tên trước khi từ chối tham dự.");
+            }
+        }
+
+        // Tạo trái tim động
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.bottom = '0px';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 3000);
+        }, 500);
+    </script>
+</body>
+</html>
