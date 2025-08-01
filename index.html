@@ -175,11 +175,19 @@
     </style>
 </head>
 <body>
+<audio id="bgMusic" autoplay loop>
+  <source src="https://cdn.pixabay.com/audio/2022/03/17/audio_65a7449ba1.mp3" type="audio/mp3">
+  Trình duyệt của bạn không hỗ trợ âm thanh.
+</audio>
+<button onclick="toggleMusic()" style="position:fixed; top:20px; right:20px; z-index:999; background-color:#ec407a; color:white; border:none; padding:10px 15px; border-radius:5px;">🔊 Bật/Tắt Nhạc</button>
+
     <div class="container">
         <header class="header">
             <h1>Thiệp Mời Dự Lễ Tốt Nghiệp</h1>
             <p>🎓 Tôi trân trọng mời bạn đến tham dự lễ tốt nghiệp! 🎉</p>
         </header>
+<div id="countdown" style="text-align:center; font-size:1.5rem; color:#d81b60; margin-top:20px;"></div>
+
 
         <section class="content">
             <h2>🎓 Thông Tin Buổi Lễ</h2>
@@ -190,14 +198,13 @@
             </ul>
         </section>
 
-        <section class="rsvp">
-            <h2>🎈 Bạn Sẽ Tham Dự Chứ?</h2>
-            <p>Vui lòng nhập tên của bạn để xác nhận tham dự:</p>
-            <input type="text" id="guestName" class="input-name" placeholder="Nhập tên của bạn" required>
-            <p>Nhấn vào nút dưới đây để xác nhận tham dự hoặc không tham dự nhé! 😊</p>
-            <button onclick="confirmAttendance()">💌 Xác Nhận Tham Dự</button>
-            <button onclick="declineAttendance()">❌ Không Tham Dự</button>
-        </section>
+        
+<section class="rsvp">
+  <h2>🎈 Bạn Sẽ Tham Dự Chứ?</h2>
+  <p>Vui lòng điền vào biểu mẫu bên dưới để xác nhận:</p>
+  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe0SDC6Pp8UBzNMHno91avBlQ_MZkqKlR7DJcZMSIjj1MaiIA/viewform?embedded=true" width="100%" height="520" frameborder="0" marginheight="0" marginwidth="0">Đang tải…</iframe>
+</section>
+
 
         <footer class="footer">
             <p>&copy; 2025 UNETI. Tất cả quyền được bảo lưu.</p>
@@ -237,5 +244,49 @@
             }, 3000);
         }, 500);
     </script>
+
+<script>
+function toggleMusic() {
+  const music = document.getElementById("bgMusic");
+  if (music.paused) {
+    music.play();
+  } else {
+    music.pause();
+  }
+}
+</script>
+
+<script>
+const countdownEl = document.getElementById("countdown");
+const eventDate = new Date("2025-08-10T14:20:00");
+
+function updateCountdown() {
+  const now = new Date();
+  const diff = eventDate - now;
+  if (diff <= 0) {
+    countdownEl.innerText = "🎓 Buổi lễ đã bắt đầu!";
+    return;
+  }
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / 1000 / 60) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+  countdownEl.innerText = `⏳ Còn lại: ${days} ngày ${hours} giờ ${minutes} phút ${seconds} giây`;
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+setTimeout(() => {
+  confetti({
+    particleCount: 100,
+    spread: 70,
+    origin: { y: 0.6 }
+  });
+}, 2000);
+</script>
 </body>
 </html>
